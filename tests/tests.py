@@ -1,6 +1,6 @@
 from src import masks
 from src import widget
-
+from src.widget import get_date
 
 CARD_NUMBER_CONST = "7000792289606361"
 ACCOUNT_NUMBER_CONST = "73654108430135874305"
@@ -17,3 +17,5 @@ print(f"Замаскированный номер карты: {masks.get_mask_ca
 
 account_number = input("Введите номер счёта для маскировки (20 символов):")
 print(f"Замаскированный номер счета: {masks.get_mask_account(account_number)}")
+
+print(get_date("2024-03-11T02:26:18.671407"))

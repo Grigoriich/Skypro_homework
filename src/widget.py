@@ -1,5 +1,4 @@
-from src import masks
-from src.masks import get_mask_card_number, get_mask_account
+from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(number: str) -> str:
@@ -14,3 +13,8 @@ def mask_account_card(number: str) -> str:
         input_list[-1] = mask_number
     return " ".join(input_list)
 
+
+def get_date(date_str: str) -> str:
+    """Функция, возвращающая дату в формате ДД.ММ.ГГГГ"""
+    date = date_str.split("-")
+    return f"{date[-1][:2]}.{date[1]}.{date[0]}"
