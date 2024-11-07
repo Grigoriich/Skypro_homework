@@ -1,5 +1,4 @@
-from src import masks
-from src import widget
+from src import masks, widget
 from src.widget import get_date
 
 CARD_NUMBER_CONST = "7000792289606361"
