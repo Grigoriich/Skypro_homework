@@ -1,4 +1,5 @@
 from src.masks import get_mask_account, get_mask_card_number
+import datetime
 
 
 def mask_account_card(number: str) -> str:
@@ -15,6 +16,12 @@ def mask_account_card(number: str) -> str:
 
 
 def get_date(date_str: str) -> str:
-    """Функция, возвращающая дату в формате ДД.ММ.ГГГГ"""
+    """Функция, возвращающая дату в формате ДД.ММ.ГГГГ из формата 2019-07-03T18:35:29.512364"""
     date = date_str.split("-")
     return f"{date[-1][:2]}.{date[1]}.{date[0]}"
+
+
+def get_date_format(date_str: str) -> datetime:
+    """Функция, возвращающая дату в формате даты модуля datetime из формата 2019-07-03T18:35:29.512364"""
+    date = date_str.split("-")
+    return datetime.datetime(int(date[0]), int(date[1]), int(date[-1][:2]))
