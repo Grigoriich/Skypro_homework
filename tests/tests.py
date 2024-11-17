@@ -6,15 +6,15 @@ from src.processing import filter_by_state, sort_by_date
 # from src.widget import get_date
 from src.widget import get_date_format
 
-# CARD_NUMBER_CONST = "7000792289606361"
-# ACCOUNT_NUMBER_CONST = "73654108430135874305"
-# ACCOUNT_STR_CONST = "Счет 73654108430135874305"
-CARD_STR_CONST = "Visa Platinum 7000792289606361"
+# card_number_const = "7000792289606361"
+# account_number_const = "73654108430135874305"
+# account_str_const = "Счет 73654108430135874305"
+card_str_const = "Visa Platinum 7000792289606361"
 #
-# print(f"Маскировка номера карты {CARD_NUMBER_CONST}, результат: {masks.get_mask_card_number(CARD_NUMBER_CONST)}")
-# print(f"Маскировка номера счёта {ACCOUNT_NUMBER_CONST}, результат: {masks.get_mask_account(ACCOUNT_NUMBER_CONST)}")
-# print(f"Маскировка номера счёта {ACCOUNT_STR_CONST}, результат: {widget.mask_account_card(ACCOUNT_STR_CONST)}")
-print(f"Маскировка номера счёта {CARD_STR_CONST}, результат: {widget.mask_account_card(CARD_STR_CONST)}")
+# print(f"Маскировка номера карты {card_number_const}, результат: {masks.get_mask_card_number(card_number_const)}")
+# print(f"Маскировка номера счёта {account_number_const}, результат: {masks.get_mask_account(account_number_const)}")
+# print(f"Маскировка номера счёта {account_str_const}, результат: {widget.mask_account_card(account_str_const)}")
+print(f"Маскировка номера счёта {card_str_const}, результат: {widget.mask_account_card(card_str_const)}")
 #
 # card_number = input("Введите номер карты для маскировки (16 символов):")
 # print(f"Замаскированный номер карты: {masks.get_mask_card_number(card_number)}")
