@@ -9,4 +9,8 @@ def get_mask_card_number(card_number: str) -> str:
 
 def get_mask_account(account_number: str) -> str:
     """Функция, возвращающая замаскированный номер счёта"""
+    if len(account_number) != 20:
+        raise ValueError("Неверный формат номера счёта")
+    if not isinstance(account_number, str):
+        raise TypeError("Неверный тип данных номера счёта")
     return f"**{account_number[-4:]}"
