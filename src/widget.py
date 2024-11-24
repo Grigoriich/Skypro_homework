@@ -14,7 +14,15 @@ def mask_account_card(number: str) -> str:
         raise ValueError("Неверный формат номера счёта")
     if len(input_list) < 2 or len(input_list[-1]) not in [16, 20]:
         raise ValueError("Неверный формат номера счёта")
-    if " ".join(input_list[0:-1]) not in ("Visa Classic", "Visa Platinum", "Visa Gold", "Счет", "Счёт", "MasterCard", "Maestro"):
+    if " ".join(input_list[0:-1]) not in (
+        "Visa Classic",
+        "Visa Platinum",
+        "Visa Gold",
+        "Счет",
+        "Счёт",
+        "MasterCard",
+        "Maestro",
+    ):
         raise ValueError("Неверный формат номера счёта")
 
     mask_number = ""

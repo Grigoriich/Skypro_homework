@@ -1,4 +1,3 @@
-from multiprocessing.managers import Value
 from typing import Dict, List
 
 from src.widget import get_date_format
