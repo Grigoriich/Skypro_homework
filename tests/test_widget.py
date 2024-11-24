@@ -1,4 +1,7 @@
+import datetime
 import pytest
+from black import datetime
+
 from src.widget import mask_account_card, get_date, get_date_format
 
 
@@ -37,7 +40,10 @@ def test_get_date(input_date, expected):
                                         ("Azazaz-hehe-1111222233334444"),
                                         ("AAAA-0F-2L"),
                                         ("2024-02-2"),
-                                        ("2024-02-2K")])
+                                        ("2024-02-2K"),
+                                        ("202-02-20"),
+                                        ("2024-2-20")
+                                        ])
 def test_invalid_date(input_date):
     with pytest.raises(ValueError):
         get_date(input_date)
@@ -46,3 +52,29 @@ def test_invalid_date(input_date):
 def test_wrong_type_date(wrong_type_fixture):
     with pytest.raises(TypeError):
         get_date(wrong_type_fixture)
+
+
+@pytest.mark.parametrize("input_date, expected", [("2024-03-25T02:26:18.671407", datetime(2024, 3, 25)),
+                                                  ("2023-02-20T02:26:18.671407", datetime(2023, 2, 20)),
+                                                  ("2022-01-15T02:26:18.671407", datetime(2022, 1, 15))])
+def test_get_date_format(input_date, expected):
+    assert get_date_format(input_date) == expected
+
+
+@pytest.mark.parametrize("input_date", [("123"),
+                                        (""),
+                                        ("Azazaz-hehe-1111222233334444"),
+                                        ("AAAA-0F-2L"),
+                                        ("2024-02-2"),
+                                        ("2024-02-2K"),
+                                        ("202-02-20"),
+                                        ("2024-2-20")
+                                        ])
+def test_invalid_date_format(input_date):
+    with pytest.raises(ValueError):
+        get_date_format(input_date)
+
+
+def test_wrong_type_date_format(wrong_type_fixture):
+    with pytest.raises(TypeError):
+        get_date_format(wrong_type_fixture)

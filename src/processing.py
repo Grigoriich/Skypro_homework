@@ -22,5 +22,13 @@ def filter_by_state(dictionary_list: List[Dict], state: str = "EXECUTED") -> Lis
 
 def sort_by_date(dictionary_list: List[Dict], increase: bool = True) -> List[Dict]:
     """Функция, сортирующая список словарей по дате, с возможностью изменения порядка сортировки"""
+    if not isinstance(dictionary_list, list):
+        raise TypeError("Неверный тип данных")
+    for item in dictionary_list:
+        if not isinstance(item, dict):
+            raise TypeError("Неверный тип данных")
+        if "date" not in item:
+            raise ValueError("Значение для фильтрации  отсутствует в исходных данных")
+
     result_list = sorted(dictionary_list, reverse=not increase, key=lambda x: get_date_format(x["date"]))
     return result_list
