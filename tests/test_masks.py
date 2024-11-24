@@ -17,9 +17,9 @@ def test_invalid_card_number(card_number):
         get_mask_card_number(card_number)
 
 
-def test_wrong_type_card_number():
+def test_wrong_type_card_number(wrong_type_fixture):
     with pytest.raises(TypeError):
-        get_mask_card_number(123)
+        get_mask_card_number(wrong_type_fixture)
 
 
 @pytest.mark.parametrize("account_number, expected", [("70007922896063611234", "**1234"),
@@ -37,6 +37,6 @@ def test_invalid_account_number(account_number):
         get_mask_account(account_number)
 
 
-def test_wrong_type_account_number():
+def test_wrong_type_account_number(wrong_type_fixture):
     with pytest.raises(TypeError):
-        get_mask_account(123)
+        get_mask_account(wrong_type_fixture)
