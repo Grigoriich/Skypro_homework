@@ -29,5 +29,3 @@ def card_number_generator(start: int, stop: int) -> Generator:
         yield f"{number[0:4]} {number[4:8]} {number[8:12]} {number[12:]}"
 
 
-# print(next(filter_by_currency([], "USD")))
-# print(len([]))
