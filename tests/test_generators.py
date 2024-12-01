@@ -1,5 +1,7 @@
 import pytest
-from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
+
+from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
+
 
 def test_filter_by_currency_usd(transactions, transactions_usd):
     filtered_transaction = filter_by_currency(transactions, "USD")
@@ -32,7 +34,16 @@ def test_transaction_descriptions(transactions, fix_descriptions):
 
 def test_transaction_descriptions_miss():
     with pytest.raises(ValueError):
-        next(transaction_descriptions([{"id": 939719570, "state": "EXECUTED",}]))
+        next(
+            transaction_descriptions(
+                [
+                    {
+                        "id": 939719570,
+                        "state": "EXECUTED",
+                    }
+                ]
+            )
+        )
 
 
 def test_transaction_descriptions_invalid():

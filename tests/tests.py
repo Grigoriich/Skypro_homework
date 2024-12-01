@@ -3,7 +3,6 @@
 # from src import masks
 from src import widget
 from src.processing import filter_by_state, sort_by_date
-
 # from src.widget import get_date
 from src.widget import get_date_format
 
