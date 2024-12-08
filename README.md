@@ -153,6 +153,29 @@ print(next(a))
 "0000 0000 0001 0001"
 ```
 
+- log: декоратор, который логирует успешность выполнения функции в консоль или файл. Пример работы функции:
+```
+#Ввод:
+@log(filename=None)
+def multiply(x, y):
+    return x * y
+multiply(2, 3)
+#Вывод:
+"multiply ok\n"
+
+#Ввод:
+@log(filename="result.txt")
+def multiply(x, y):
+    raise ValueError("Недопустимые значения")
+
+multiply(2, 3)
+with open("text.txt", "r") as file:
+    content = file.readlines()
+    print(content[-1])
+#Вывод:
+"multiply error: Недопустимые значения. Inputs: (2, 3), {}\n"
+```
+
 ## Тестирование:
 
 Тестирование функционала осуществляется в пакете "tests".
