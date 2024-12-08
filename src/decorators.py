@@ -8,13 +8,13 @@ def log(filename=None):
                 if not filename:
                     print(f"{func.__name__} error: {e}. Inputs: {args}, {kwargs}")
                 else:
-                    with open(filename, 'a') as file:
+                    with open(filename, 'w') as file:
                         file.write(f"{func.__name__} error: {e}. Inputs: {args}, {kwargs}\n")
             else:
                 if not filename:
                     print(f"{func.__name__} ok")
                 else:
-                    with open(filename, 'a') as file:
+                    with open(filename, 'w') as file:
                         file.write(f"{func.__name__} ok\n")
                 return result
         return wrapper
