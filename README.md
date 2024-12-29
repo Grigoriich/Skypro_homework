@@ -176,6 +176,39 @@ with open("text.txt", "r") as file:
 "multiply error: Недопустимые значения. Inputs: (2, 3), {}\n"
 ```
 
+- load_json_from_path: функция, возвращающая список словарей из json файла по указанному пути. Пример работы функции:
+```
+#Ввод:
+json_data = load_json_from_path("../data/operations.json")
+print(json_data[0])
+#Вывод:
+{
+  "id": 441945886,
+  "state": "EXECUTED",
+  "date": "2019-08-26T10:50:58.294041",
+  "operationAmount": {
+    "amount": "31957.58",
+    "currency": {
+      "name": "руб.",
+      "code": "RUB"
+    }
+  },
+  "description": "Перевод организации",
+  "from": "Maestro 1596837868705199",
+  "to": "Счет 64686473678894779589"
+}
+```
+
+- get_transaction_amount_in_rub: функция, возвращающая сумму в рублях по переданной транзакции. Пример работы функции:
+```
+#Ввод:
+json_data = load_json_from_path("../data/operations.json")
+example = get_transaction_amount_in_rub(json_data[1])
+print(example)
+#Вывод:
+869206.932982
+```
+
 ## Тестирование:
 
 Тестирование функционала осуществляется в пакете "tests".

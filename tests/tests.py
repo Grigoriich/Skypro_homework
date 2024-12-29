@@ -3,9 +3,9 @@
 # from src import masks
 from src import widget
 from src.processing import filter_by_state, sort_by_date
-# from src.widget import get_date
 from src.widget import get_date_format
 
+# from src.widget import get_date
 # card_number_const = "7000792289606361"
 # account_number_const = "73654108430135874305"
 # account_str_const = "Счет 73654108430135874305"
