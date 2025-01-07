@@ -2,7 +2,7 @@ import json
 import logging
 
 utils_logger = logging.getLogger(__name__)
-utils_file_handler = logging.FileHandler("../logs/utils.log", mode="w")
+utils_file_handler = logging.FileHandler("C:/Users/gncha/PycharmProjects/Home_work_9_1/logs/utils.log", mode="w")
 utils_formatter = logging.Formatter("%(asctime)s %(filename)s %(levelname)s: %(message)s")
 utils_file_handler.setFormatter(utils_formatter)
 utils_logger.addHandler(utils_file_handler)
