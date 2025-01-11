@@ -1,7 +1,12 @@
 import logging
+import os.path
+
+from config import ROOT_DIR
+
+log_file_path_masks = os.path.join(ROOT_DIR, "logs", "masks.log")
 
 masks_logger = logging.getLogger(__name__)
-masks_file_handler = logging.FileHandler("C:/Users/gncha/PycharmProjects/Home_work_9_1/logs/masks.log", mode="w")
+masks_file_handler = logging.FileHandler(log_file_path_masks, mode="w")
 masks_formatter = logging.Formatter("%(asctime)s %(filename)s %(levelname)s: %(message)s")
 masks_file_handler.setFormatter(masks_formatter)
 masks_logger.addHandler(masks_file_handler)

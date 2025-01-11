@@ -1,8 +1,13 @@
 import json
 import logging
+import os.path
+
+from config import ROOT_DIR
+
+log_file_path_utils = os.path.join(ROOT_DIR, "logs", "utils.log")
 
 utils_logger = logging.getLogger(__name__)
-utils_file_handler = logging.FileHandler("C:/Users/gncha/PycharmProjects/Home_work_9_1/logs/utils.log", mode="w")
+utils_file_handler = logging.FileHandler(log_file_path_utils, mode="w")
 utils_formatter = logging.Formatter("%(asctime)s %(filename)s %(levelname)s: %(message)s")
 utils_file_handler.setFormatter(utils_formatter)
 utils_logger.addHandler(utils_file_handler)
@@ -20,3 +25,11 @@ def load_json_from_path(path_: str) -> list:
     except Exception as e:
         utils_logger.error(f"Произошла ошибка: {e}", exc_info=True)
         return []
+
+# data = load_json_from_path("../data/operations.json")
+# print(len(data))
+# counter = 0
+# for item in data:
+#     counter += 1
+#     print(counter)
+#     print(item["state"])
