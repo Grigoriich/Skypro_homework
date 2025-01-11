@@ -1,15 +1,21 @@
 import json
 import logging
+import os.path
+from typing import Dict, List
+
+from config import ROOT_DIR
+
+log_file_path_utils = os.path.join(ROOT_DIR, "logs", "utils.log")
 
 utils_logger = logging.getLogger(__name__)
-utils_file_handler = logging.FileHandler("C:/Users/gncha/PycharmProjects/Home_work_9_1/logs/utils.log", mode="w")
+utils_file_handler = logging.FileHandler(log_file_path_utils, mode="w")
 utils_formatter = logging.Formatter("%(asctime)s %(filename)s %(levelname)s: %(message)s")
 utils_file_handler.setFormatter(utils_formatter)
 utils_logger.addHandler(utils_file_handler)
 utils_logger.setLevel(logging.DEBUG)
 
 
-def load_json_from_path(path_: str) -> list:
+def load_json_from_path(path_: str) -> List[Dict]:
     "Функция, возвращающая список словарей из json файла по указанному пути"
     try:
         utils_logger.info(f"Загрузка json файла из пути {path_}")

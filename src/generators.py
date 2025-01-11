@@ -5,11 +5,25 @@ def filter_by_currency(transactions: List[Dict], currency_code: str) -> Generato
     "Итератор, который поочередно выдает транзакции, где валюта операции соответствует заданной (например, USD)"
     if not transactions:
         raise ValueError("Список транзакций пуст")
-    if currency_code not in [x["operationAmount"]["currency"]["code"] for x in transactions]:
-        raise ValueError("Операции с заданной валютой отсутствуют")
+    currency_code_list = []
+    source_flag = False  # Флаг источник - json
     for transaction in transactions:
-        if transaction["operationAmount"]["currency"]["code"] == currency_code:
-            yield transaction
+        if "operationAmount" in transaction:
+            currency_code_list.append(transaction["operationAmount"]["currency"]["code"])
+        else:
+            source_flag = True  # Флаг источник - csv или xlsx
+            currency_code_list.append(transaction["currency_code"])
+
+    if currency_code not in currency_code_list:
+        raise ValueError("Операции с заданной валютой отсутствуют")
+    if source_flag:  # Если источник - csv или xlsx
+        for transaction in transactions:
+            if transaction["currency_code"] == currency_code:
+                yield transaction
+    else:  # Если источник - json
+        for transaction in transactions:
+            if transaction["operationAmount"]["currency"]["code"] == currency_code:
+                yield transaction
 
 
 def transaction_descriptions(transactions: List[Dict]) -> Generator:

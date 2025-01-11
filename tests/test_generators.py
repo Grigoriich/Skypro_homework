@@ -26,6 +26,12 @@ def test_filter_by_currency_invalid():
         next(filter_by_currency([], "USD"))
 
 
+def test_filter_by_currency_from_csv_or_xlsx(transactions_from_csv_or_xlsx, transactions_from_csv_or_xlsx_tzs):
+    filtered_transactions = filter_by_currency(transactions_from_csv_or_xlsx, "TZS")
+    for oper in transactions_from_csv_or_xlsx_tzs:
+        assert next(filtered_transactions) == oper
+
+
 def test_transaction_descriptions(transactions, fix_descriptions):
     transaction_description = transaction_descriptions(transactions)
     for description in fix_descriptions:
