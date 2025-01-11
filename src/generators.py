@@ -6,7 +6,7 @@ def filter_by_currency(transactions: List[Dict], currency_code: str) -> Generato
     if not transactions:
         raise ValueError("Список транзакций пуст")
     currency_code_list = []
-    source_flag = False # Флаг источник - json
+    source_flag = False  # Флаг источник - json
     for transaction in transactions:
         if "operationAmount" in transaction:
             currency_code_list.append(transaction["operationAmount"]["currency"]["code"])
@@ -16,11 +16,11 @@ def filter_by_currency(transactions: List[Dict], currency_code: str) -> Generato
 
     if currency_code not in currency_code_list:
         raise ValueError("Операции с заданной валютой отсутствуют")
-    if source_flag: # Если источник - csv или xlsx
+    if source_flag:  # Если источник - csv или xlsx
         for transaction in transactions:
             if transaction["currency_code"] == currency_code:
                 yield transaction
-    else: # Если источник - json
+    else:  # Если источник - json
         for transaction in transactions:
             if transaction["operationAmount"]["currency"]["code"] == currency_code:
                 yield transaction

@@ -1,6 +1,3 @@
-from re import search
-from traceback import print_tb
-
 from src.filter import filter_by_string
 from src.generators import filter_by_currency
 from src.import_from_csv_xlsx import import_from_csv, import_from_xlsx
@@ -10,44 +7,54 @@ from src.widget import get_date, mask_account_card
 
 
 def main():
-    print("""Привет! Добро пожаловать в программу работы 
+    print(
+        """Привет! Добро пожаловать в программу работы
 с банковскими транзакциями.
 Выберите необходимый пункт меню:
 1. Получить информацию о транзакциях из JSON-файла
 2. Получить информацию о транзакциях из CSV-файла
-3. Получить информацию о транзакциях из XLSX-файла""")
-    points_list = ["Для обработки выбран JSON-файл\n", "Для обработки выбран CSV-файл\n", "Для обработки выбран XLSX-файл\n"]
+3. Получить информацию о транзакциях из XLSX-файла"""
+    )
+    points_list = [
+        "Для обработки выбран JSON-файл\n",
+        "Для обработки выбран CSV-файл\n",
+        "Для обработки выбран XLSX-файл\n",
+    ]
     point = int(input())
     while point not in range(1, 4):
-        print("""Выбран несуществующий пункт.
+        print(
+            """Выбран несуществующий пункт.
 Выберите необходимый пункт меню:
 1. Получить информацию о транзакциях из JSON-файла
 2. Получить информацию о транзакциях из CSV-файла
-3. Получить информацию о транзакциях из XLSX-файла""")
+3. Получить информацию о транзакциях из XLSX-файла"""
+        )
         point = int(input())
-    print(points_list[point-1])
+    print(points_list[point - 1])
 
-    #пути с данными из примера
+    # пути с данными из примера
     paths_to_operations = ["../data/operations.json", "../data/transactions.csv", "../data/transactions_excel.xlsx"]
 
     print("Введите путь к файлу (0 - для выбора данных из примера):")
     path_to_data = input()
     if path_to_data == "0":
-        path_to_data = paths_to_operations[point-1]
+        path_to_data = paths_to_operations[point - 1]
     import_operations = [load_json_from_path, import_from_csv, import_from_xlsx]
 
-    operations_list = import_operations[point-1](path_to_data) # загруженный список словарей
+    operations_list = import_operations[point - 1](path_to_data)  # загруженный список словарей
 
-
-    print("""Введите статус, по которому необходимо выполнить фильтрацию. 
-Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING""")
+    print(
+        """Введите статус, по которому необходимо выполнить фильтрацию.
+Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING"""
+    )
     status_list = ["EXECUTED", "CANCELED", "PENDING"]
     status = input().upper()
     while status not in status_list:
-        print(f"""Статус операции '{status}' недоступен.
-        
-Введите статус, по которому необходимо выполнить фильтрацию. 
-Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING""")
+        print(
+            f"""Статус операции '{status}' недоступен.
+\nВведите статус, по которому необходимо выполнить фильтрацию.
+Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING"""
+        )
         status = input().upper()
 
     operations_list = filter_by_state(operations_list, status)
@@ -99,9 +106,11 @@ def main():
         else:
             print(f"{mask_account_card(operation["from"])} -> {mask_account_card(operation["to"])}")
 
-        if point == 1: # Если импорт из JSON
-            print(f"Сумма: {operation["operationAmount"]["amount"]} {operation["operationAmount"]["currency"]["name"]}")
-        else: # Если импорт из csv или xlsx
+        if point == 1:  # Если импорт из JSON
+            print(
+                f"Сумма: {operation["operationAmount"]["amount"]} {operation["operationAmount"]["currency"]["name"]}"
+            )
+        else:  # Если импорт из csv или xlsx
             print(f"Сумма: {operation["amount"]} {operation["currency_name"]}")
 
 

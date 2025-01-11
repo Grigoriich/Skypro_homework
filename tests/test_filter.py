@@ -1,7 +1,4 @@
-import pytest
-
-from src.filter import filter_by_string, counter_by_category_list
-from tests.conftest import counted_descriptions
+from src.filter import counter_by_category_list, filter_by_string
 
 
 def test_filter_by_string(transactions):
@@ -49,5 +46,5 @@ def test_counter_by_category_list(transactions_without_description, fix_descript
     assert counter_by_category_list(transactions_without_description, fix_descriptions) == counted_descriptions
 
 
-def test_counter_by_empty_category_list(transactions_without_description, counted_descriptions):
+def test_counter_by_empty_category_list(transactions_without_description):
     assert counter_by_category_list(transactions_without_description, []) == {}

@@ -1,6 +1,7 @@
 import json
 import logging
 import os.path
+from typing import Dict, List
 
 from config import ROOT_DIR
 
@@ -14,7 +15,7 @@ utils_logger.addHandler(utils_file_handler)
 utils_logger.setLevel(logging.DEBUG)
 
 
-def load_json_from_path(path_: str) -> list:
+def load_json_from_path(path_: str) -> List[Dict]:
     "Функция, возвращающая список словарей из json файла по указанному пути"
     try:
         utils_logger.info(f"Загрузка json файла из пути {path_}")
@@ -25,11 +26,3 @@ def load_json_from_path(path_: str) -> list:
     except Exception as e:
         utils_logger.error(f"Произошла ошибка: {e}", exc_info=True)
         return []
-
-# data = load_json_from_path("../data/operations.json")
-# print(len(data))
-# counter = 0
-# for item in data:
-#     counter += 1
-#     print(counter)
-#     print(item["state"])
